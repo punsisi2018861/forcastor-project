@@ -1,0 +1,40 @@
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+    <style>
+        #dragandrophandler{
+            border:2px dotted #0B85A1;
+            width:400px;
+            color:#92AAB0;
+            text-align:left;vertical-align:middle;
+            padding:20px;
+            /*margin-bottom:10px;*/
+            font-size:125%;
+            margin: 10px auto;
+	}
+    </style>
+  </head>
+  
+  <body>
+    <br>
+    <div class="container">
+      <button class="btn btn-info"><a style="color:white" href="gui.html">< Back</a></button>
+  
+      <div class="jumbotron">
+        <h1>Upload File</h1>
+        <h2>Only Microsoft Excel Files are supported</h2>
+        <p>customer_id | transaction date | amount |</p>
+        <br>
+        <div class="text-center" id="dragandrophandler">Upload Customer Transactions
+            <!-- <input class="form-control m-t-20" multiple=""  type="file" id="id_test_file"> -->
+            <input class="form-control" type="file" id="formFile">
+            <input  type="hidden" id="hdnfile_input1" value="">
+
+        </div>
+      </div>
+  
+    </div>
+  <body>
+  <script src="linkers/gui.js"></script>
+  
