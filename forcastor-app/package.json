@@ -1,7 +1,7 @@
 {
-  "name": "python-app-with-electron-gui",
+  "name": "forcastor-app",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "description": "Transaction Prediction System based on Customer Lifetime value",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
