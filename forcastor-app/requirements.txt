@@ -7,3 +7,5 @@ tensorflow
 lxml
 pandas
 openpyxl
+scikit-learn
+joblib

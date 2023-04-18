@@ -7,7 +7,7 @@ function testfunc(){
 
 document.getElementById('formFile').addEventListener('change', function() {
     console.log('path to file>>> '+this.files[0].path);
-    if ( /\.(xlsx|png|gif)$/i.test(this.files[0].name) === false ) {
+    if ( /\.(xlsx|csv|gif)$/i.test(this.files[0].name) === false ) {
       Swal.fire({
         icon: 'error',
         title: 'file format error',
@@ -17,7 +17,7 @@ document.getElementById('formFile').addEventListener('change', function() {
       else{var filePath = this.files[0].path;
   
         localStorage.setItem("filePath", this.files[0].path);
-        window.location = 'rfm.html';
+        window.location = 'predictions.html';
       }
 
 });
