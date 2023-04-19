@@ -1,25 +1,95 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <meta charset="UTF-8">
+  <style>
+    body {
+    /* background-image: url("img_tree.gif"), url("paper.gif"); */
+    background-color: #333333;
+  }
+  .button-57 {
+    position: relative;
+    overflow: hidden;
+    border: 3px solid #18181a;
+    color: #18181a;
+    display: inline-block;
+    font-size: 15px;
+    line-height: 15px;
+    padding: 18px 18px 17px;
+    text-decoration: none;
+    cursor: pointer;
+    background: #fff;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  .button-57 span:first-child {
+    position: relative;
+    transition: color 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 10;
+  }
+
+  .button-57 span:last-child {
+    color: white;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    transition: all 500ms cubic-bezier(0.48, 0, 0.12, 1);
+    z-index: 100;
+    opacity: 0;
+    top: 50%;
+    left: 50%;
+    transform: translateY(225%) translateX(-50%);
+    height: 14px;
+    line-height: 13px;
+  }
+
+  .button-57:after {
+    content: "";
+    position: absolute;
+    bottom: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: black;
+    transform-origin: bottom center;
+    transition: transform 600ms cubic-bezier(0.48, 0, 0.12, 1);
+    transform: skewY(9.3deg) scaleY(0);
+    z-index: 50;
+  }
+
+  .button-57:hover:after {
+    transform-origin: bottom center;
+    transform: skewY(9.3deg) scaleY(2);
+  }
+
+  .button-57:hover span:last-child {
+    transform: translateX(-50%) translateY(-100%);
+    opacity: 1;
+    transition: all 900ms cubic-bezier(0.48, 0, 0.12, 1);
+  }
+  </style>
 </head>
 
 <body>
   <div class="container">
-    <div class="jumbotron">
-      <h1>FORCASTOR</h1>
-      <p>Rendered by HTML and JavaScript</p>
-      <br><br>
-      <img style="width:30%" src="images/xls.png"/>
-      <br>
-      <button class="btn btn-info"><a style="color:white" href="upload.html">Upload</a></button>
+    <div class="card h-100 p-0">
+      <div class="card-body mr-0">
+        <h1>F O R C A S T A</h1>
+        <p>The crystal ball for your business. </p>
+      </div>
     </div>
-    <!-- <br>
-    <div class="row">
-    <div class="col-xs-4">
-      <img style="width:30%" src="images/weather-icon.png"/>
+
+    <div class="jumbotron" style="text-align: center;">
+      <h1>F O R C A S T A</h1>
+      <p style="font-family:'Alegreya Sans SC'; font-size: 20px;">The crystal ball for your business. &#128302; </p>
       <br>
-      <button class="btn btn-info"><a style="color:white" href="weather.html">Weather</a></button>
-    </div> -->
+      <img style="width:20%; margin-right: 30px;" src="images/xls.png"/><img style="width:10%; margin-right: 30px;" src="images/next.png"/><img style="width:20%" src="images/graph.png"/>
+      <br><br>
+      <!-- <button class="btn btn-info"><a style="color:white" href="upload.html">Upload</a></button> -->
+      <button class="button-57" role="button" onclick="location.href='upload.html'"><span class="text">E N T E R</span><span>FORCASTA</span></button>
+    </div>
 </div>
 </div>
 <body>

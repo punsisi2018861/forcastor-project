@@ -6,41 +6,14 @@ import numpy as np
 from sklearn.cluster import KMeans
 import time
 from sklearn.preprocessing import MinMaxScaler
-
-import joblib
+import keras
+import warnings
+warnings.filterwarnings("ignore")
 
 filePath = sys.argv[1]
 
 
-def get_weather(place):
-    weather = place
-    df = pd.read_excel(weather)
-    df1= df.head(2)
-    # output = df1.to_json()
-    htmlFile = df.to_html()
-
-    text_file = open("gui/datatable1.html", "w")
-    text_file.write(htmlFile)
-    text_file.close()
-    output = "Prediction Completed!"
-
-    return output
-
-# print(get_weather(filePath))
-# sys.stdout.flush()
-
 def order_cluster(df, target_field_name, cluster_field_name, ascending):
-    """
-    INPUT:
-        - df                  - pandas DataFrame
-        - target_field_name   - str - A column in the pandas DataFrame df
-        - cluster_field_name  - str - Expected to be a column in the pandas DataFrame df
-        - ascending           - Boolean
-        
-    OUTPUT:
-        - df_final            - pandas DataFrame with target_field_name and cluster_field_name as columns
-    
-    """
     # Add the string "new_" to cluster_field_name
     new_cluster_field_name = "new_" + cluster_field_name
     
@@ -123,44 +96,6 @@ def get_predictions(file_path):
     kmeans = KMeans(n_clusters=number_of_clusters)
     kmeans.fit(ctm_dt[['Recency']])
     ctm_dt['RecencyCluster'] = kmeans.predict(ctm_dt[['Recency']])
-
-    def order_cluster(df, target_field_name, cluster_field_name, ascending):
-        """
-        INPUT:
-            - df                  - pandas DataFrame
-            - target_field_name   - str - A column in the pandas DataFrame df
-            - cluster_field_name  - str - Expected to be a column in the pandas DataFrame df
-            - ascending           - Boolean
-            
-        OUTPUT:
-            - df_final            - pandas DataFrame with target_field_name and cluster_field_name as columns
-        
-        """
-        # Add the string "new_" to cluster_field_name
-        new_cluster_field_name = "new_" + cluster_field_name
-        
-        # Create a new dataframe by grouping the input dataframe by cluster_field_name and extract target_field_name 
-        # and find the mean
-        df_new = df.groupby(cluster_field_name)[target_field_name].mean().reset_index()
-        
-        # Sort the new dataframe df_new, by target_field_name in descending order
-        df_new = df_new.sort_values(by=target_field_name, ascending=ascending).reset_index(drop=True)
-        
-        # Create a new column in df_new with column name index and assign it values to df_new.index
-        df_new["index"] = df_new.index
-        
-        # Create a new dataframe by merging input dataframe df and part of the columns of df_new based on 
-        # cluster_field_name
-        df_final = pd.merge(df, df_new[[cluster_field_name, "index"]], on=cluster_field_name)
-        
-        # Update the dataframe df_final by deleting the column cluster_field_name
-        df_final = df_final.drop([cluster_field_name], axis=1)
-        
-        # Rename the column index to cluster_field_name
-        df_final = df_final.rename(columns={"index": cluster_field_name})
-        
-        return df_final
-
     ctm_dt = order_cluster(ctm_dt, 'Recency', 'RecencyCluster', False)
 
     #get order counts for each user and create a dataframe with it
@@ -213,23 +148,24 @@ def get_predictions(file_path):
     sc = MinMaxScaler(feature_range=(0, 1))
     X = sc.fit_transform(ctm_class)
 
-    model= joblib.load('engine/model/txnDayPredictionModel.h5')
+    model = keras.models.load_model ("engine/model/txnDayPredictionModel.h5") 
     pred= model.predict(X)
 
     # Create a new dataframe with the user ID column from tx_class
-    predictions_df = pd.DataFrame(user_df['CustomerID'])
+    predictions_df = user_df[['CustomerID']].copy()
 
     # Add the transaction day with the highest probability as a column to the predictions_df
     predictions_df['predicted_transaction_day'] = np.argmax(pred, axis=1)
 
     # Merge the predictions_df with the tx_class dataframe based on the user ID column
     merged_df = pd.merge(user_df, predictions_df, on='CustomerID')
+
     html_data_table = merged_df.to_html()
 
     text_file = open("gui/datatable1.html", "w")
     text_file.write(html_data_table)
     text_file.close()
-    output = "Prediction Completed!"
+    output = "Prediction Completeddd!"
 
     return output
 

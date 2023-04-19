@@ -1,5 +1,6 @@
 let {PythonShell} = require('python-shell')
 var path = require("path")
+let $ = jQuery = require('jquery');
 
 function testfunc(){
     swal("hello");

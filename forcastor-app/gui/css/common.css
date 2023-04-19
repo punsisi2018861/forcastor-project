@@ -1,0 +1,104 @@
+body {
+    /* background-image: url("img_tree.gif"), url("paper.gif"); */
+    background-color: #333333;
+    
+}
+
+/* buttons */
+.btn {
+  box-sizing: border-box;
+  appearance: none;
+  background-color: transparent;
+  border: 2px solid #e74c3c;
+  border-radius: 0.6em;
+  color: #e74c3c;
+  cursor: pointer;
+  display: flex;
+  align-self: center;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  margin: 20px;
+  padding: 1.2em 2.8em;
+  text-decoration: none;
+  text-align: center;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+}
+
+.btn:hover:focus {
+    color: #fff;
+    outline: 0;
+}
+
+.third {
+  border-color: #6200ee;
+  color: #fff;
+  box-shadow: 0 0 40px 40px #6200ee inset, 0 0 0 0 #6200ee;
+  transition: all 150ms ease-in-out;
+}
+
+.third:hover {
+    box-shadow: 0 0 10px 0 #6200ee inset, 0 0 10px 4px #6200ee;
+    color: #fff;
+}
+
+
+/* Loader */
+
+.pl {
+    display: block;
+    margin:auto;
+    width: 6.25em;
+    height: 6.25em;
+}
+.pl__ring, .pl__ball {
+animation: ring 2s ease-out infinite;
+}
+.pl__ball {
+animation-name: ball;
+}
+
+/* Dark theme  */
+@media (prefers-color-scheme: dark) {
+:root {
+    --bg: hsl(var(--hue),10%,10%);
+    --fg: hsl(var(--hue),10%,90%);
+}
+}
+
+/* Animation */
+@keyframes ring {
+from {
+    stroke-dasharray: 0 257 0 0 1 0 0 258;
+}
+25% {
+    stroke-dasharray: 0 0 0 0 257 0 258 0;
+}
+50%, to {
+    stroke-dasharray: 0 0 0 0 0 515 0 0;
+}
+}
+@keyframes ball {
+from, 50% {
+    animation-timing-function: ease-in;
+    stroke-dashoffset: 1;
+}
+64% {
+    animation-timing-function: ease-in;
+    stroke-dashoffset: -109;
+}
+78% {
+    animation-timing-function: ease-in;
+    stroke-dashoffset: -145;
+}
+92% {
+    animation-timing-function: ease-in;
+    stroke-dashoffset: -157;
+}
+57%, 71%, 85%, 99%, to {
+    animation-timing-function: ease-out;
+    stroke-dashoffset: -163;
+} 
+}

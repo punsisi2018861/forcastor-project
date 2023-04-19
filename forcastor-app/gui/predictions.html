@@ -2,6 +2,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
+    <link href="css/common.css" rel="stylesheet">
     <style>
     </style>
   </head>
@@ -9,18 +10,36 @@
   <body>
     <br>
     <div class="container">
-      <button class="btn btn-info"><a style="color:white" href="upload.html"> Back</a></button>
+      <button class="btn third" onclick="location.href='upload.html'">Back</button>
+      <br>
   
       <div class="jumbotron">
         <h1>Predictions</h1>
         <br><br>
-        <p id="testJson"></p>
+        <p id="loadingMsg">Sit tight! This will take a few minutes...</p>
         <br>
+        <div id ="content" style="width: fit-content;"> </div>
       </div>
-
-      <div id ="content"> </div>
   
     </div>
+
+    <div class="loader" id="loader" style="display:none;">
+      <svg class="pl" viewBox="0 0 200 200" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="pl-grad1" x1="1" y1="0.5" x2="0" y2="0.5">
+            <stop offset="0%" stop-color="hsl(313,90%,55%)" />
+            <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+          </linearGradient>
+          <linearGradient id="pl-grad2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="hsl(313,90%,55%)" />
+            <stop offset="100%" stop-color="hsl(223,90%,55%)" />
+          </linearGradient>
+        </defs>
+        <circle class="pl__ring" cx="100" cy="100" r="82" fill="none" stroke="url(#pl-grad1)" stroke-width="36" stroke-dasharray="0 257 1 257" stroke-dashoffset="0.01" stroke-linecap="round" transform="rotate(-90,100,100)" />
+        <line class="pl__ball" stroke="url(#pl-grad2)" x1="100" y1="18" x2="100.01" y2="182" stroke-width="36" stroke-dasharray="1 165" stroke-linecap="round" />
+      </svg>
+    </div>
+    
   <body>
   <script src="js/predictions.js"></script>
   
