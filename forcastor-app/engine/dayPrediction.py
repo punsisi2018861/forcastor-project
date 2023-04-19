@@ -7,6 +7,7 @@ from sklearn.cluster import KMeans
 import time
 from sklearn.preprocessing import MinMaxScaler
 import keras
+import os
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -162,6 +163,9 @@ def get_predictions(file_path):
 
     html_data_table = merged_df.to_html()
 
+    if os.path.exists("gui/datatable1.html"):
+        os.remove("gui/datatable1.html")
+    
     text_file = open("gui/datatable1.html", "w")
     text_file.write(html_data_table)
     text_file.close()

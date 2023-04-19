@@ -13,14 +13,22 @@
       <button class="btn third" onclick="location.href='upload.html'">Back</button>
       <br>
   
-      <div class="jumbotron">
-        <h1>Predictions</h1>
-        <br><br>
-        <p id="loadingMsg">Sit tight! This will take a few minutes...</p>
+      <div class="jumbotron" style="text-align: center;">
+        <h1 style="text-align: left;">Predictions</h1>
+        <br>
+        <p id="loadingMsg" style="text-align: left;">Sit tight! This will take a few minutes...</p>
         <br>
         <div id ="content" style="width: fit-content;"> </div>
+
+        <br>
+
+        <input id="fileselector" onchange="browseResult(event)" type="file" webkitdirectory style="display:none" />
+        <button id="downloadbtn" class="button-57" role="button" onclick="getElementById('fileselector').click()" style="display:none" >
+          <span class="text">Export</span><span>Select Path</span>
+        </button>
+
       </div>
-  
+      
     </div>
 
     <div class="loader" id="loader" style="display:none;">
@@ -39,7 +47,7 @@
         <line class="pl__ball" stroke="url(#pl-grad2)" x1="100" y1="18" x2="100.01" y2="182" stroke-width="36" stroke-dasharray="1 165" stroke-linecap="round" />
       </svg>
     </div>
-    
+
   <body>
   <script src="js/predictions.js"></script>
   
