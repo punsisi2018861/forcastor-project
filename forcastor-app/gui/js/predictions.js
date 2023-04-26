@@ -30,7 +30,7 @@ pyshell.on('message', function(message) {
   Swal.fire({
     title: 'Complete!',
     text: message,
-    icon: 'info',
+    icon: 'success',
     confirmButtonText: 'View'
   })
 
