@@ -139,6 +139,7 @@ def get_predictions(file_path):
     ctm_class['NextPurchaseDayRange'] = 2  ## first week
     ctm_class.loc[ctm_class.NextPurchaseDay>30,'NextPurchaseDayRange'] = 1 # 4th week
     ctm_class.loc[ctm_class.NextPurchaseDay>90,'NextPurchaseDayRange'] = 0 # more than 3 months
+    ctm_class['NextPurchaseDayRange'] = ctm_class['NextPurchaseDayRange'].map({0: "month_1", 1: "month_3", 2: "next_quarter"})
 
     user_df = ctm_class.copy()
     ctm_class = ctm_class.drop('NextPurchaseDay', axis=1)
@@ -160,6 +161,14 @@ def get_predictions(file_path):
 
     # Merge the predictions_df with the tx_class dataframe based on the user ID column
     merged_df = pd.merge(user_df, predictions_df, on='CustomerID')
+    merged_df = merged_df.drop('predicted_transaction_day', axis=1)
+    merged_df = merged_df.drop('Segment_Mid-Value', axis=1)
+    merged_df = merged_df.drop('Segment_Low-Value', axis=1)
+    merged_df = merged_df.drop('Segment_High-Value', axis=1)
+    merged_df = merged_df.drop('Revenue', axis=1)
+    merged_df = merged_df.drop('NextPurchaseDay', axis=1)
+    merged_df = merged_df.drop('Recency', axis=1)
+    merged_df = merged_df.drop('Frequency', axis=1)
 
     html_data_table = merged_df.to_html()
 
